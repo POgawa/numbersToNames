@@ -7,7 +7,7 @@
 }
 
 body { 
-  background: url(http://upload.wikimedia.org/wikipedia/commons/thumb/5/5d/Scrabble_game_in_progress.jpg/1280px-Scrabble_game_in_progress.jpg) no-repeat center center fixed; 
+  background: url(http://www.trinitynortheast.org.au/wp-content/uploads/2011/05/numbers.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -17,5 +17,5 @@ body {
 #result {
   margin: 30px;
   font-size: 40px;
-  display: hidden;
+  display: none;
 }

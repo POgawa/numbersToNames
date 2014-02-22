@@ -1,53 +1,86 @@
-var scrabbleScore = function(string) {
-  var inputArray = string.toLowerCase().split("");
-  var onePointScore = ['a', 'e', 'i', 'o', 'u', 'l', 'n', 'r', 's', 't'];
-  var twoPointScore = ["d","g"];
-  var threePointScore = ['b', 'c', 'm', 'p'];
-  var fourPointScore = ['f', 'h', 'v', 'w', 'y'];
-  var fivePointScore = ["k"];
-  var eightPointScore = ["j","x"];
-  var tenPointScore = ["q","z"];
-  var totalScore = 0;
+var numbersToNames = function(number) {
+  var numbersDictionary =  {"1" : "one", "2":"two", "3" : "three", "4" : "four", "5" : "five", "6": "six", "7" : "seven", "8" : "eight", "9" : "nine"};
+  var tenWords = {"2" : "twenty", "3": "thirty", "4" :"fourty", "5" : "fifty", "6": "sixty", "7": "seventy", "8" : "eighty", "9": "ninety"}
+  
+  var result = "";
+  var numberString = number.toString();
+  //var numArray = [];
 
-  inputArray.forEach(function(letter) {
-    for (var i = 0; i <= inputArray.length; i++) { 
-      if (letter === onePointScore[i]) {
-        totalScore = totalScore + 1;
+  if (numberString.length === 5 ) {
+    for (var x in tenWords) {
+      if (numberString[0] === x) {
+        result = result + tenWords[x];
+      };
     };
-      if (letter === twoPointScore[i]){
-        totalScore = totalScore + 2;
-      };
-      if (letter === threePointScore[i]){
-        totalScore = totalScore + 3;
-      };  
-      if (letter === fourPointScore[i]){
-        totalScore = totalScore + 4;
-      };
-      if (letter === fivePointScore[i]){
-        totalScore = totalScore + 5;
-      };
-      if (letter === eightPointScore[i]){
-        totalScore = totalScore + 8;
-      };        
-      if (letter === tenPointScore[i]){
-        totalScore = totalScore + 10;
-      };            
+    for (var x in numbersDictionary) {
+      if (numberString[1] === x) {
+        result = result + " " + numbersDictionary[x] + " " + "thousand";
+    };
   };
-});
-  return totalScore;
+      numberString = numberString.slice(2);
+      console.log(numberString);
+      console.log(result);
+  }; 
+
+  if (numberString.length === 4) {
+    for (var x in numbersDictionary) {
+      if (numberString[0] === x) {
+        result = result + numbersDictionary[x] + " " + "thousand";
+      };
+    };
+      numberString = numberString.slice(1);
+     
+  } 
+
+  if (numberString.length === 3) {
+    for (var x in numbersDictionary) {
+      if (numberString[0] === x) {
+        result = result + " " + numbersDictionary[x] + " " + "hundred";
+      };
+    };
+    numberString = numberString.slice(1);
+  } 
+
+  if (numberString.length === 2 && numberString != "10") {
+    var tenMaker = numberString.charAt(0);
+      for (var x in tenWords) {
+        if (tenMaker[0] === x) { 
+          result = result + " "+ tenWords[x];
+      for (var x in numbersDictionary) {
+      if (numberString[1] === x) {
+        result = result + " " + numbersDictionary[x];
+        }; 
+       };
+     };
+    };
+  };
+
+  if (numberString.length === 1) {       
+    for (var x in numbersDictionary) {
+    if (numberString[0] === x) {
+      result = result + numbersDictionary[x];
+      }; 
+    };
+  };
+  return result;
 };
+
 
 $(document).ready(function(){
   $("form#score-form").submit(function(){
-    var input = $("#word").val();
-    var totalScore = scrabbleScore(input);
+    var input = $("#input").val();
+    var nummberTo = numbersToNames(input);
 
-    $(".scrabbleScore").text(totalScore);
+    $(".numbername").text(nummberTo);
       this.reset();
 
-    $(".yourWord").text(input);
     $("div#result").show();
 
     event.preventDefault();
   });
 });
+
+/*if string.length===5 && string.charAt(1) === string.charAt(2){
+  return var x + thousand
+}
+32,222*/
